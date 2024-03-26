@@ -40,6 +40,6 @@ $ docker-compose up --build
 ```
 - Go into nodejs docker shell and run the database migration with full path of knex command
 ```
-$ node_modules/.bin/knex migrate:latest --env production
+$ ./node_modules/.bin/knex migrate:latest --env production
 ```
 - Do not forget to seed the users
