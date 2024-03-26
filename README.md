@@ -32,6 +32,9 @@ $ node ./bin/cli.js --seed users
 ```
 $ npm run start
 ```
+- You can access the website via port 3000
+- You can access swagger documentation in http://[host]:3000/apidocs/
+
 
 ## Docker Installation
 - Use docker-compose for easy deployment
