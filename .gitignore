@@ -1,0 +1,5 @@
+.env
+app.code-workspace
+db-data
+.vscode
+node_modules
