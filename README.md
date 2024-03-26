@@ -15,6 +15,7 @@ $ npm install
 ```
 - Copy `env.example` to `.env`
 - Adjust database configuration inside `.env`
+- Create your new database in PostgreSQL
 
 ## Migration and Seeding
 - Run database migration (command below is using production environment)
