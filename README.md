@@ -22,9 +22,9 @@ $ npm install
 ```
 $ knex migrate:latest --env production
 ```
-- Seed database users
+- Seed database
 ```
-$ node ./bin/cli.js --seed users
+$ knex seed:run --env production
 ```
 
 ## Running
@@ -46,3 +46,6 @@ $ docker-compose up --build
 $ ./node_modules/.bin/knex migrate:latest --env production
 ```
 - Do not forget to seed the users
+```
+$ ./node_modules/.bin/knex seed:run --env production
+```
