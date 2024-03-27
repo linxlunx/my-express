@@ -49,3 +49,11 @@ $ ./node_modules/.bin/knex migrate:latest --env production
 ```
 $ ./node_modules/.bin/knex seed:run --env production
 ```
+
+## Test
+- Spin postgresql database server
+- Create database with suffix `_staging`
+- Run test
+```
+$ npm run test
+```
