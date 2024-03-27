@@ -9,10 +9,9 @@ ARG user=node
 RUN adduser ${user}
 
 ADD . /app
-RUN chown ${user}:${user} /app
+RUN chown -R ${user}:${user} /app
 RUN mkdir -p /app/node_modules
 RUN chown -R ${user}:${user} /app/node_modules/
-RUN chown ${user}:${user} /app/package-lock.json
 
 USER ${user}
 
