@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 const request = require('supertest')
 const db = require('../../db');
 const knex = require('knex')
-const knexConfig = require('../../knexfile');
+const knexConfig = require('../../../knexfile');
 const migrator = knex(knexConfig.staging)
 
 describe('Auth route', function () {

@@ -1,4 +1,4 @@
-const { hashPassword } = require("../helper/password");
+const { hashPassword } = require("../src/helper/password");
 
 /**
  * @param { import("knex").Knex } knex
