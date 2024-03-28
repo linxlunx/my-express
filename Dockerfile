@@ -8,7 +8,14 @@ ARG user=node
 
 RUN adduser ${user}
 
-ADD . /app
+COPY bin /app/bin
+COPY knexfile.js /app/knexfile.js
+COPY migrations /app/migrations
+COPY package-lock.json /app/package-lock.json
+COPY package.json /app/package.json
+COPY seeds /app/seeds
+COPY src /app/src
+
 RUN chown -R ${user}:${user} /app
 RUN mkdir -p /app/node_modules
 RUN chown -R ${user}:${user} /app/node_modules/
@@ -32,4 +39,3 @@ WORKDIR /app
 RUN npm install
 
 CMD ["npm", "run", "start"]
-#CMD ["tail", "-f", "/dev/null"]

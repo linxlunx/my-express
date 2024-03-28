@@ -16,3 +16,5 @@ services:
     working_dir: /app
     links:
     - "db:db"
+    env_file:
+    - .env
