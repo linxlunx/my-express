@@ -2,7 +2,7 @@ var Mocha = require('mocha');
 const glob = require('glob');
 const knex = require('knex');
 const knexConfig = require('../knexfile');
-const migrator = knex(knexConfig.development);
+const migrator = knex(knexConfig.test);
 const fs = require('fs');
 const sqlite = require('better-sqlite3');
 
