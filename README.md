@@ -51,8 +51,10 @@ $ ./node_modules/.bin/knex seed:run --env production
 ```
 
 ## Test
-- Spin postgresql database server
-- Create database with suffix `_staging`
+- Install dev dependencies by setting `NODE_ENV` to `development`
+```
+$ npm install
+```
 - Run test
 ```
 $ npm run test

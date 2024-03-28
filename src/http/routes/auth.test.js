@@ -1,42 +1,37 @@
 require('dotenv').config();
 
-const { Pool } = require('pg');
-const request = require('supertest')
-const db = require('../../db');
-const knex = require('knex')
+const request = require('supertest');
+const knex = require('knex');
 const knexConfig = require('../../../knexfile');
-const migrator = knex(knexConfig.staging)
+const migrator = knex(knexConfig.development);
+const sqlite = require('better-sqlite3');
+const fs = require('fs');
+
 
 describe('Auth route', function () {
     let app;
 
-    before('Mock db connection and load app', async function () {
-        const pool = new Pool({
-            user: process.env.DB_USER,
-            host: process.env.DB_HOST,
-            database: process.env.DB_NAME + "_staging",
-            password: process.env.DB_PASSWORD,
-            port: process.env.DB_PORT,
-        });
+    const dbFile = 'dev.sqlite3'
 
-        db.query = (text, params) => pool.query(text, params)
+    before('Mock db connection, load app, and migrate data', async function () {
+        // mock db
+        const db = new sqlite(dbFile);
+        db.query = (text, params) => db.prepare(text).all(params);
 
+        // init app
         app = require('../../app');
-    });
 
-    beforeEach('Create temporary tables', async function () {
+        // migrate and seed
         await migrator.migrate.latest();
         await migrator.seed.run();
-    })
+    });
 
-    afterEach('Drop temporary tables', async function () {
-        await migrator.schema.dropTable('group_permissions');
-        await migrator.schema.dropTable('user_groups');
-        await migrator.schema.dropTable('permissions')
-        await migrator.schema.dropTable('groups')
-        await migrator.schema.dropTable('users')
-        await migrator.schema.dropTable('knex_migrations_lock')
-        await migrator.schema.dropTable('knex_migrations')
+    after('Drop sqlite3 table', async function () {
+        try {
+            fs.unlinkSync(dbFile);
+        } catch (err) {
+            console.error(err);
+        }
     })
 
     describe('Test Auth Login', function () {
